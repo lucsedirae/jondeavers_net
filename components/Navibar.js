@@ -3,7 +3,7 @@ export default function Navibar() {
   return (
     <div>
       <Navbar bg='light' expand='lg'>
-        <Navbar.Brand>Jon Deavers</Navbar.Brand>
+        <Navbar.Brand className="p-2">Jon Deavers</Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='me-auto'>

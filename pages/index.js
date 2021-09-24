@@ -1,7 +1,8 @@
+//* Dependencies
 import styles from '../styles/Home.module.scss';
 
+//* Custom components
 import CardArray from '../components/CardArray';
-import ContactCard from '../components/ContactCard';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 export default function Home() {

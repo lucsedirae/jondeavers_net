@@ -33,10 +33,7 @@ export default function GitCard() {
   return (
     <Card style={{ width: '20rem' }}>
       <Card.Body>
-        <Card.Title>
-          <Github size={32} className='m-1' />
-          GitHub Profile{' '}
-        </Card.Title>
+        <Card.Title>GitHub Profile </Card.Title>
         <ListGroup variant='flush'>
           <ListGroup.Item>Username: {username}</ListGroup.Item>
           <ListGroup.Item>Following: {following}</ListGroup.Item>
