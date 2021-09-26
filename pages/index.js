@@ -9,7 +9,6 @@ export default function Home() {
   return (
     <Layout>
       <Hero />
-      {/* //! Replace contact card with card array component that gives grid to the cards */}
       <CardArray />
     </Layout>
   );
