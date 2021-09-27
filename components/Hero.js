@@ -3,7 +3,7 @@ import { attribute, hero } from '../styles/Hero.module.scss';
 const Hero = () => {
   return (
     <main className={hero}>
-      <p className={attribute}>
+      <p className={attribute} >
 
       Photo by{' '}
       <a href='https://unsplash.com/@jplenio?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>

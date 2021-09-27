@@ -4,7 +4,6 @@ import AboutCard from './AboutCard';
 import { Container, Row, Col } from 'react-bootstrap';
 export default function CardArray() {
   return (
-    <Container style={{ paddingTop: '1rem' }}>
       <Row>
         <Col style={{marginTop: "2rem"}}>
           <ContactCard />
@@ -16,6 +15,5 @@ export default function CardArray() {
           <AboutCard />
         </Col>
       </Row>
-    </Container>
   );
 }
