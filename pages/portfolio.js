@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { portfolioData } from '../data/portfolioData';
 import styles from '../styles/Portfolio.module.scss';
 
-//* Bootstrap and icon imports
+//* Bootstrap imports
 import { Container, Row, Col } from 'react-bootstrap';
 
 //* Custom components

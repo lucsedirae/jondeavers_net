@@ -9,6 +9,7 @@ export default function Navibar() {
           <Nav className='me-auto'>
             <Nav.Link href='/'> Home</Nav.Link>
             <Nav.Link href='/portfolio'>Portfolio</Nav.Link>
+            <Nav.Link href='/blog'>Blog</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
