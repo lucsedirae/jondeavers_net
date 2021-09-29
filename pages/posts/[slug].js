@@ -1,6 +1,7 @@
 //* Dependencies
 import Link from 'next/link';
 import { formatDate } from '../../utils/helpers';
+import {blogPost} from "../../styles/Blog.module.scss"
 
 //* Custom components
 import Layout from '../../components/Layout';
@@ -16,7 +17,7 @@ export default function Post(data) {
       <h1 className='p-1'>{title}</h1>
       <div className='text-muted p-1'>Published on: {formatDate(date)}</div>
       <div className='text-muted p-1'>Author: {author.node.name}</div>
-      <div className='p-4'>
+      <div className={blogPost} >
         <article dangerouslySetInnerHTML={{ __html: content }} />
       </div>
       <Link href='/blog'>
