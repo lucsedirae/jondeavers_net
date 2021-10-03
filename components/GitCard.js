@@ -13,7 +13,6 @@ export default function GitCard() {
 
   const getGit = () => {
     axios.get('https://api.github.com/users/lucsedirae').then((response) => {
-      console.log('Raw', response);
       setState({
         username: response.data.login,
         following: response.data.following,
@@ -25,7 +24,6 @@ export default function GitCard() {
 
   useEffect(() => {
     getGit();
-    console.log('state', state);
   }, []);
 
   const { username, followers, following, repos } = state;

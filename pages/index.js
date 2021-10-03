@@ -12,7 +12,6 @@ import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 export default function Home({ posts }) {
   const { title, slug, content, date, author } = posts.edges[0].node;
-  console.log(date);
 
   return (
     <Layout>

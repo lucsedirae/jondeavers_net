@@ -1,38 +1,47 @@
 //* Dependencies
+import { useState } from 'react';
 import Link from 'next/link';
 import { formatDate } from '../../utils/helpers';
-import {blogPost} from "../../styles/Blog.module.scss"
+import { blogPost } from '../../styles/Blog.module.scss';
 
 //* Custom components
 import Layout from '../../components/Layout';
+import Pagination from '../../components/Pagination';
 
 //* Icon imports
 import { BiArrowBack } from '@react-icons/all-files/bi/BiArrowBack';
 export default function Post(data) {
   const post = data.post;
-  const { title, date, author, content, featuredImage } = post;
+  const posts = data.posts;
+  const { title, date, author, content, featuredImage, id } = post;
 
   return (
     <Layout>
-      <h1 className='p-1'>{title}</h1>
-      <div className='text-muted p-1'>Published on: {formatDate(date)}</div>
-      <div className='text-muted p-1'>Author: {author.node.name}</div>
-      <div className={blogPost} >
+      <Pagination posts={posts} id={post.id} />
+      <h1 className='p-1 text-center'>{title}</h1>
+      <div className='text-muted p-1 text-center'>
+        Published on: {formatDate(date)}
+      </div>
+      <div className='text-muted p-1 text-center'>
+        Author: {author.node.name}
+      </div>
+      <div className={blogPost}>
         <article dangerouslySetInnerHTML={{ __html: content }} />
       </div>
-      <Link href='/blog'>
-        <a className='text-muted p-1'>
-          {' '}
-          <BiArrowBack className='m-1' />
-          Back to all posts...
-        </a>
-      </Link>
+      <div style={{textAlign: "center"}}>
+        <Link href='/blog'>
+          <a className='text-muted p-1'>
+            {' '}
+            <BiArrowBack className='m-1' />
+            Back to all posts...
+          </a>
+        </Link>
+      </div>
     </Layout>
   );
 }
-
 export async function getStaticProps(context) {
-  const res = await fetch(`https://wp.jondeavers.net/graphql`, {
+  const postRes = await fetch(`https://wp.jondeavers.net/graphql`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -41,6 +50,7 @@ export async function getStaticProps(context) {
           post(id: $id, idType: $idType) {
             title
             slug
+            id
             content
             featuredImage { 
               node {
@@ -64,11 +74,44 @@ export async function getStaticProps(context) {
     }),
   });
 
-  const json = await res.json();
+  const postJson = await postRes.json();
+
+  const postsRes = await fetch(`https://wp.jondeavers.net/graphql`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: `
+      query MyQuery {
+        posts {
+          nodes {
+            slug
+            id
+            content
+            title
+            date
+            author {
+              node {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+      `,
+      variables: {
+        id: context.params.slug,
+        idType: 'SLUG',
+      },
+    }),
+  });
+
+  const postsJson = await postsRes.json();
 
   return {
     props: {
-      post: json.data.post,
+      post: postJson.data.post,
+      posts: postsJson.data.posts,
     },
   };
 }

@@ -9,8 +9,6 @@ import { Card, Container, Row, Col } from 'react-bootstrap';
 import Layout from '../components/Layout';
 
 export default function Blog({ posts }) {
-  console.log(posts);
-
   return (
     <Layout>
       <Container>

@@ -2,6 +2,29 @@
   padding: 1rem;
 }
 
+.pageActive {
+  color: blue;
+}
+
+.pageBox {
+  display: inline;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.pageContainer {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pageSpacer {
+  display: inline;
+  width: 20%;
+}
+
 @media only screen and (min-width: 600px) {
   .blogPost {
     width: 60%;

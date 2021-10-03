@@ -11,12 +11,8 @@ import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
 import { FiLink } from '@react-icons/all-files/fi/FiLink';
 
 export default function PortfolioItem(item) {
-  console.log(item);
   const { name, credit, screenshot, description, deployedURL, githubURL } =
     item.item;
-
-  console.log(screenshot);
-
   return (
     <Row>
       <Col>

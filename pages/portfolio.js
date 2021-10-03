@@ -16,7 +16,6 @@ export default function Portfolio() {
   //* Fetches portfolio data on render
   useEffect(() => {
     setState(portfolioData);
-    console.log(state);
   }, []);
 
   return (
