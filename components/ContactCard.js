@@ -33,7 +33,7 @@ export default function ContactCard() {
 
           <ListGroup.Item>
             Résumé:{' '}
-            <Link href='https://docs.google.com/document/d/1C0rsh3-RranSAbb-T1-3C5vPKdz8c51Uvymkt9wVR0w/edit?usp=sharing'>
+            <Link href='https://docs.google.com/document/d/10RZ6hOaAEO0nRfVOnx9snA7-AxzmbmZpJW4YY9MdFEI/edit?usp=sharing'>
               <a target='_blank' rel='noreferrer'>
                 <Google size={32} className='m-1' />
               </a>
