@@ -3,7 +3,7 @@ import { Card, ListGroup } from 'react-bootstrap';
 import { Github, Twitter, Linkedin, Google } from 'react-bootstrap-icons';
 export default function ContactCard() {
   return (
-    <Card style={{ width: '20rem' }}>
+    <Card style={{ width: '100%' }}>
       <Card.Body>
         <Card.Title>Contact Me</Card.Title>
         <ListGroup variant='flush'>

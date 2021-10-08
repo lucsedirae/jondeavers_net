@@ -2,7 +2,7 @@ import { Card, ListGroup } from 'react-bootstrap';
 
 export default function AboutCard() {
   return (
-    <Card style={{ width: '20rem' }}>
+    <Card style={{ width: '100%' }}>
       <Card.Body>
         <Card.Title>About</Card.Title>
         <Card.Text>

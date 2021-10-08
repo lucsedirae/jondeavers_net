@@ -29,7 +29,7 @@ export default function GitCard() {
   const { username, followers, following, repos } = state;
 
   return (
-    <Card style={{ width: '20rem' }}>
+    <Card style={{ width: '100%' }}>
       <Card.Body>
         <Card.Title>GitHub Profile </Card.Title>
         <ListGroup variant='flush'>
