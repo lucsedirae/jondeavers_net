@@ -6,7 +6,7 @@ import { blogPost } from '../../styles/Blog.module.scss';
 
 //* Custom components
 import Layout from '../../components/Layout';
-import Pagination from '../../components/Pagination';
+// import Pagination from '../../components/Pagination';
 
 //* Icon imports
 import { BiArrowBack } from '@react-icons/all-files/bi/BiArrowBack';
@@ -17,7 +17,7 @@ export default function Post(data) {
 
   return (
     <Layout>
-      <Pagination posts={posts} id={post.id} />
+      {/* <Pagination posts={posts} id={post.id} /> */}
       <h1 className='p-1 text-center'>{title}</h1>
       <div className='text-muted p-1 text-center'>
         Published on: {formatDate(date)}
