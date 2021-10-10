@@ -1,14 +1,39 @@
 //* Dependencies
-import Link from 'next/link';
-import { formatDate } from '../utils/helpers';
+import { useState, useEffect } from 'react';
+import { pageBox, pageContainer, arrow } from '../styles/Blog.module.scss';
 
 //* Bootstrap and icon imports
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import { ArrowLeft, ArrowRight } from 'react-bootstrap-icons';
 
 //* Custom components
 import Layout from '../components/Layout';
+import PostSummary from '../components/PostSummary';
 
 export default function Blog({ posts }) {
+  console.log("All posts", posts.nodes)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const postsPerPage = 5;
+  //* Create an array of post batches
+  const postBatch = posts.nodes.slice(
+    currentIndex,
+    currentIndex + postsPerPage
+  );
+  console.log(postBatch);
+
+  const prevPosts = () => {
+    setCurrentIndex(currentIndex - postsPerPage);
+    console.log(currentIndex);
+  };
+  const nextPosts = () => {
+    //If currentIndex + postsPerPage > posts.nodes.length
+    setCurrentIndex(currentIndex + postsPerPage);
+    console.log('Current index', currentIndex);
+  };
+  
+  console.log('Total posts', posts.nodes.length);
+  console.log('Current index', currentIndex);
+
   return (
     <Layout>
       <Container>
@@ -19,39 +44,29 @@ export default function Blog({ posts }) {
         </Row>
         <Row>
           <Col>
-            {posts.nodes.map((post) => {
-              const { slug, title, date, author, content } = post;
-
-              return (
-                <Card key={slug} className='m-2'>
-                  <Card.Body>
-                    <Link href={`/posts/${slug}`}>
-                      <a>
-                        <Card.Title>{title}</Card.Title>
-                      </a>
-                    </Link>
-                    <Card.Subtitle className='text-muted p-1'>
-                      Published on: {formatDate(date)}
-                    </Card.Subtitle>
-                    <Card.Subtitle className='text-muted p-1'>
-                      Author: {author.node.name}
-                    </Card.Subtitle>
-                    <div
-                      className='p-2'
-                      dangerouslySetInnerHTML={{
-                        __html: content.substring(0, 200).concat('...'),
-                      }}
-                    />
-                    <Link href={`/posts/${slug}`}>
-                      <a>
-                        <Card.Text className='text-muted p-1'>
-                          Continue reading...
-                        </Card.Text>
-                      </a>
-                    </Link>
-                  </Card.Body>
-                </Card>
-              );
+            <div className={pageContainer}>
+              {currentIndex !== 0 ? (
+                <div className={pageBox}>
+                  {' '}
+                  <ArrowLeft onClick={prevPosts} className={arrow} />
+                </div>
+              ) : (
+                ''
+              )}
+              {postBatch.length === 0 ? (
+                <h3 className='text-center'>End of list</h3>
+              ) : (
+                <div className={pageBox}>
+                  <ArrowRight onClick={nextPosts} className={arrow} />
+                </div>
+              )}
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {postBatch.map((post, i) => {
+              return <PostSummary post={post} key={i} />;
             })}
           </Col>
         </Row>
@@ -67,7 +82,7 @@ export async function getStaticProps() {
     body: JSON.stringify({
       query: `
       query MyQuery {
-        posts {
+        posts(first: 100) {
           nodes {
             slug
             content

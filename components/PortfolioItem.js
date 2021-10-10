@@ -24,6 +24,7 @@ export default function PortfolioItem(item) {
           src={screenshot}
           width={600}
           height={320}
+          quality={25}
           alt={`Screenshot of ${name} application`}
         />
         <div>
